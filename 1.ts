@@ -11,7 +11,7 @@ class Deputy extends Human {
     name: string;
     surname: string;
     age: number;
-    bribeTaker?: boolean;
+    bribeTaker: boolean;
     bribe: number;
     constructor(weight, height, name, surname, age, bribeTaker, bribe = 0 ) {
         super(weight, height);
@@ -22,7 +22,7 @@ class Deputy extends Human {
         this.bribe = bribe;
     }
     toGiveBribe(sum: number) {
-        if (this.bribeTaker === true) {
+        if (this.bribeTaker) {
             if (sum > 20000) {
                 Math.round(Math.random()) ? this.bribe += sum : console.log('No thanks');
             }
@@ -34,11 +34,9 @@ class Deputy extends Human {
 
 class Fraction {
     list: Object[] = [];
-
     addDeputy(deputy) {
         this.list.push(deputy);
     }
-
     delDeputy(name) {
         const i = this.list.indexOf(name);
         (i >= 0) ? this.list.splice(i, 1) : console.log('Not present');
