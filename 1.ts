@@ -1,2 +1,2 @@
-lasda
-asdasda
+let name: number = 1;
+console.log(name);
