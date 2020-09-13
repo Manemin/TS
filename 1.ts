@@ -90,7 +90,6 @@ class Senate {
     delGroup(name) {
         const i = this.group.map(frac => frac.name).indexOf(name);
         (i >= 0) ? this.group.splice(i, 1) : console.log('Not present');
-        console.log(i);
     };
     printAllGroup() {
         // this.group.forEach(el => console.log(el));
