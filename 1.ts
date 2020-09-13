@@ -32,20 +32,44 @@ class Deputy extends Human {
     }
 }
 
+interface Deputy {
+    name: string;
+    surname: string;
+    age: number;
+    bribeTaker: boolean;
+    bribe: number;
+    weight : number;
+    height: number;
+}
+
 class Fraction {
-    list: Object[] = [];
+    list: Array<Deputy> = [];
     addDeputy(deputy) {
         this.list.push(deputy);
     };
     delDeputy(name: string) {
-        // const find = dep => dep.surname;
-        // const i = this.list.map(find).indexOf(name);
-        const i = this.list.findIndex(dep => dep.surname === name);
+        const i = this.list.map(dep => dep.surname).indexOf(name);
+        // const i = this.list.findIndex(dep => dep.surname === name);
         (i >= 0) ? this.list.splice(i, 1) : console.log(`Deputy '${name}' not present`);
     };
     delAllBribeTaker() {
-        const find = dep => dep.bribeTaker === 'true';
+        const find = dep => dep.bribeTaker === false;
         this.list = this.list.filter(find);
+    };
+    maxBribe() {
+        // const bribe = (res, dep) => res = Math.max(res, dep.bribe);
+        const max = this.list.reduce((res, dep) => res = Math.max(res, dep.bribe), 0);
+        console.log(this.list.filter(dep => dep.bribe === max));
+    };
+    listDeputy() {
+        console.log(this.list);
+    };
+    delAll() {
+        this.list = [];
+    };
+    sumOfBribe() {
+        const sum = this.list.reduce((res, dep) => res += dep.bribe, 0);
+        console.log(sum)
     };
 }
 
@@ -72,9 +96,5 @@ const rad = new Fraction();
 rad.addDeputy(l);
 rad.addDeputy(t);
 rad.addDeputy(a);
-
-rad.delAllBribeTaker();
-console.log(rad);
-
-
-
+rad.sumOfBribe();
+// console.log(rad);
