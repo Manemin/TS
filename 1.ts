@@ -43,7 +43,11 @@ interface Deputy {
 }
 
 class Fraction {
+    name: string
     list: Array<Deputy> = [];
+    constructor(name) {
+        this.name = name;
+    }
     addDeputy(deputy) {
         this.list.push(deputy);
     };
@@ -73,28 +77,43 @@ class Fraction {
     };
 }
 
+interface  Fraction {
+    name: string;
+    list: Array<Deputy>
+}
+
 class Senate {
-    group: Object[] = [];
+    group: Array<Fraction> = [];
     addGroup(name) {
         this.group.push(name);
-    }
+    };
     delGroup(name) {
-        const i = this.group.indexOf(name);
+        const i = this.group.map(frac => frac.name).indexOf(name);
         (i >= 0) ? this.group.splice(i, 1) : console.log('Not present');
-    }
+        console.log(i);
+    };
     printAllGroup() {
         // this.group.forEach(el => console.log(el));
         console.log(this.group);
+    };
+    printGroup(name) {
+        console.log(this.group.filter(frac => frac.name === name));
     }
+
+
 }
 
-const l = new Deputy(80, 170, 'oleg', 'la', 48, true, 1000)
-const t = new Deputy(80, 170, 'ul', 'ti', 50, true, 10000);
-const a = new Deputy(80, 170, 'pp', 'pp', 50, false);
-const rad = new Fraction();
+// const l = new Deputy(80, 170, 'oleg', 'la', 48, true, 1000)
+// const t = new Deputy(80, 170, 'ul', 'ti', 50, true, 10000);
+// const a = new Deputy(80, 170, 'pp', 'pp', 50, false);
+// const radParty = new Fraction('RadParty');
+// const es = new Fraction('Es');
+// const rada = new Senate();
+// rada.addGroup(radParty)
+// rada.addGroup(es);
+// radParty.addDeputy(l);
+// radParty.addDeputy(t);
+// radParty.addDeputy(a);
+// console.log(rada);
+// // rada.printGroup('RadParty')
 
-rad.addDeputy(l);
-rad.addDeputy(t);
-rad.addDeputy(a);
-rad.sumOfBribe();
-// console.log(rad);
