@@ -36,11 +36,16 @@ class Fraction {
     list: Object[] = [];
     addDeputy(deputy) {
         this.list.push(deputy);
-    }
-    delDeputy(name) {
-        const i = this.list.indexOf(name);
-        (i >= 0) ? this.list.splice(i, 1) : console.log('Not present');
-    }
+    };
+    delDeputy(name: string) {
+        const find = dep => dep.surname;
+        const i = this.list.map(find).indexOf(name);
+        (i >= 0) ? this.list.splice(i, 1) : console.log(`Deputy '${name}' not present`);
+    };
+    delAllBribeTaker() {
+        const find = dep => dep.bribeTaker === 'true';
+        this.list = this.list.filter(find);
+    };
 }
 
 class Senate {
@@ -57,3 +62,18 @@ class Senate {
         console.log(this.group);
     }
 }
+
+const l = new Deputy(80, 170, 'oleg', 'la', 48, true, 1000)
+const t = new Deputy(80, 170, 'ul', 'ti', 50, true, 10000);
+const a = new Deputy(80, 170, 'pp', 'pp', 50, false);
+const rad = new Fraction();
+
+rad.addDeputy(l);
+rad.addDeputy(t);
+rad.addDeputy(a);
+
+rad.delAllBribeTaker();
+console.log(rad);
+
+
+
