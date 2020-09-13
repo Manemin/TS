@@ -38,8 +38,9 @@ class Fraction {
         this.list.push(deputy);
     };
     delDeputy(name: string) {
-        const find = dep => dep.surname;
-        const i = this.list.map(find).indexOf(name);
+        // const find = dep => dep.surname;
+        // const i = this.list.map(find).indexOf(name);
+        const i = this.list.findIndex(dep => dep.surname)
         (i >= 0) ? this.list.splice(i, 1) : console.log(`Deputy '${name}' not present`);
     };
     delAllBribeTaker() {
